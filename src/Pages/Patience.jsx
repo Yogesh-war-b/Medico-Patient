@@ -14,7 +14,7 @@ export default function Patience() {
   const renderContent = () => {
     switch (selectedSection) {
       case 'Profile':
-        return <Profile />;
+        return <Profile userId="PAT000000011" />;
       case 'Contact':
         return <ContactPage />;
       case 'settings':
