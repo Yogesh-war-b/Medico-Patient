@@ -39,7 +39,7 @@ const ContactPage = () => {
                   </div>
                   <div>
                     <h5 className="fw-semibold">Emergency & Appointments</h5>
-                    <p className="mb-1 text-muted">+1 (555) 000-MED-01</p>
+                    <p className="mb-1 text-muted">+91 1234567890</p>
                     <small className="text-danger fst-italic">Available 24/7 for emergencies</small>
                   </div>
                 </div>
@@ -78,7 +78,7 @@ const ContactPage = () => {
                   <div>
                     <h5 className="fw-semibold">Location</h5>
                     <p className="mb-0 text-muted">
-                      123 Health Avenue, Medical District<br />New York, NY 10001
+                      Siruseri, Chengalpattu District<br />India, 603103
                     </p>
                   </div>
                 </div>
@@ -98,7 +98,7 @@ const ContactPage = () => {
                       type="text" 
                       required
                       className="form-control"
-                      placeholder="John Doe"
+                      placeholder="Enter Your Name"
                       onChange={(e) => setFormData({...formData, name: e.target.value})}
                     />
                   </div>
@@ -108,7 +108,7 @@ const ContactPage = () => {
                       type="email" 
                       required
                       className="form-control"
-                      placeholder="john@example.com"
+                      placeholder="Enter Your Email"
                       onChange={(e) => setFormData({...formData, email: e.target.value})}
                     />
                   </div>

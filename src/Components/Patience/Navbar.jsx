@@ -42,11 +42,11 @@ export default function Navbar({ onSectionChange }) {
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <a className="nav-link " aria-current="page" href="/">
                 Home
               </a>
-            </li>
+            </li> */}
             
             <li className="nav-item">
               <a className="nav-link " onClick={() => handleprofileSection("appointments")} href="#appointments">

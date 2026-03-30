@@ -137,7 +137,7 @@ export default function AppointmentForm({ doctorName, onBookingComplete, onBack 
           ← Back
         </button>
 
-        <h2>Book Appointment with Dr. {doctorName}</h2>
+        <h2>Book Appointment with <br /> {doctorName}</h2>
 
         {error && <div className="alert alert-danger">{error}</div>}
         {success && <div className="alert alert-success">{success}</div>}
@@ -175,7 +175,7 @@ export default function AppointmentForm({ doctorName, onBookingComplete, onBack 
             />
           </div>
 
-          <div className="form-group">
+          {/* <div className="form-group">
             <label htmlFor="healthIssues">Previous Health Issues (Optional)</label>
             <textarea
               id="healthIssues"
@@ -186,7 +186,7 @@ export default function AppointmentForm({ doctorName, onBookingComplete, onBack 
               rows="3"
               className="form-control"
             />
-          </div>
+          </div> */}
 
           <div className="form-row">
             <div className="form-group">

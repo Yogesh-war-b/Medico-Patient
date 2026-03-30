@@ -1,7 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState, useEffect } from 'react';
-import patienceData from '../data/PatienceData';
+import patienceData from '../data/PatienceData.jsx';
 // import patienceData from '../data/PatienceData';
 import './Profile.css';
 

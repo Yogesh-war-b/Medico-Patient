@@ -26,7 +26,7 @@ export default function SearchResult({location,department}){
                 filterData.map((doctor, index) => (
                     <div key={index} className="doctor-card"> 
                         <img src={doctorImage} alt={`${doctor.name}_img`} className="doctor-image" />
-                        <h3 className="doctor-name">Dr. {doctor.name}</h3>
+                        <h3 className="doctor-name">{doctor.name}</h3>
                         
                         <div className="doctor-info">
                           <div className="info-item">
