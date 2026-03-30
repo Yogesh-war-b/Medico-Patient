@@ -8,6 +8,8 @@ import Profile from '../Components/Patience/Profile';
 
 import ContactPage from './Contact';
 
+import AppointmentData from '../Components/Patience/AppointmentData';
+
 export default function Patience() {
   const [selectedSection, setSelectedSection] = useState('');
 
@@ -17,8 +19,12 @@ export default function Patience() {
         return <Profile userId="PAT000000011" />;
       case 'Contact':
         return <ContactPage />;
+      case 'AppointmentData':
+        return <AppointmentData />;
       case 'settings':
         return <div className="settings-container"><h2>Settings</h2><p>Settings content here.</p></div>;
+      
+
       case 'logout':
         // Handle logout
         localStorage.clear();

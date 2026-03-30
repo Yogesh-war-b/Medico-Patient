@@ -59,7 +59,7 @@ export default function Navbar({ onSectionChange }) {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" onClick={() => handleprofileSection("appointments-history")} href="#AppointmentsHistory">
+              <a className="nav-link" onClick={() => handleprofileSection("AppointmentData")} href="#AppointmentData">
                 Appointments
               </a>
             </li>
