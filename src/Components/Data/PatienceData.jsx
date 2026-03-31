@@ -1,4 +1,4 @@
-const patientData = {
+const patienceData = {
   "patients": [
     {
       "patientId": "PAT000000001",
@@ -210,75 +210,6 @@ const patientData = {
     }
     // Continue similarly for patients PAT000000008 through PAT000000020
   ]
-  [
-  {
-    "patientId": "PAT000000008",
-    "name": "Rohit Mehta",
-    "age": 36,
-    "email": "rohit.m@example.com",
-    "phoneNumber": "9876045678",
-    "emergencyNumber": "9123347777",
-    "gender": "Male",
-    "address": "12 Palm Street, Ahmedabad",
-    "appointmentData": [
-      {
-        "date": "2026-01-18",
-        "time": "02:30 PM",
-        "doctorName": "Dr. Neha Joshi",
-        "specialization": "Pulmonologist",
-        "prescription": [
-          { "id": "M002", "name": "Amoxicillin", "dosage": "250mg twice daily" }
-        ],
-        "tests": [
-          { "id": "T012", "name": "COVID-19 RT-PCR", "result": "Negative" }
-        ],
-        "remarks": "Respiratory infection treated successfully",
-        "status": "Past"
-      },
-      {
-        "date": "2026-05-02",
-        "time": "11:00 AM",
-        "doctorName": "Dr. Neha Joshi",
-        "specialization": "Pulmonologist",
-        "reasonForVisit": "Follow-up check",
-        "status": "Upcoming"
-      }
-    ]
-  },
-  {
-    "patientId": "PAT000000009",
-    "name": "Meena Krishnan",
-    "age": 45,
-    "email": "meena.k@example.com",
-    "phoneNumber": "9876056789",
-    "emergencyNumber": "9123348888",
-    "gender": "Female",
-    "address": "77 Jasmine Road, Coimbatore",
-    "appointmentData": [
-      {
-        "date": "2026-02-05",
-        "time": "09:15 AM",
-        "doctorName": "Dr. Rajesh Pillai",
-        "specialization": "Gastroenterologist",
-        "prescription": [
-          { "id": "M006", "name": "Omeprazole", "dosage": "20mg once daily" }
-        ],
-        "tests": [
-          { "id": "T008", "name": "Liver Function Test", "result": "Mild enzyme elevation" }
-        ],
-        "remarks": "Advised dietary changes",
-        "status": "Past"
-      },
-      {
-        "date": "2026-04-20",
-        "time": "03:00 PM",
-        "doctorName": "Dr. Rajesh Pillai",
-        "specialization": "Gastroenterologist",
-        "reasonForVisit": "Re-evaluation",
-        "status": "Upcoming"
-      }
-    ]
-  }
-]
-
 };
+
+export default patienceData;

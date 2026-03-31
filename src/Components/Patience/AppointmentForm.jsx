@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./AppointmentForm.css";
+import patienceData from "../Data/PatienceData";
+import hospitalData from "../Data/DoctorData";
+import PaymentConfirmation from "./PaymentConfirmation";
 
 export default function AppointmentForm({ doctorName, onBookingComplete, onBack }) {
   const [formData, setFormData] = useState({
     name: "",
     age: "",
+    gender: "",
     healthIssues: "",
     date: "",
     time: "",
@@ -12,6 +16,41 @@ export default function AppointmentForm({ doctorName, onBookingComplete, onBack 
 
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const [consultationFee, setConsultationFee] = useState(0);
+  const [patientData, setPatientData] = useState(null);
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [pendingAppointment, setPendingAppointment] = useState(null);
+
+  useEffect(() => {
+    // Get patient ID from localStorage
+    const patientId = localStorage.getItem("patientId");
+    
+    if (patientId) {
+      // Find patient data from PatienceData
+      const patient = patienceData.patients.find(
+        (p) => p.patientId === patientId
+      );
+      
+      if (patient) {
+        setPatientData(patient);
+        // Pre-fill form with patient data
+        setFormData((prev) => ({
+          ...prev,
+          name: patient.name,
+          age: patient.age,
+          gender: patient.gender,
+        }));
+      }
+    }
+
+    // Get doctor consultation fee
+    const doctor = hospitalData.hospital_staff.find(
+      (doc) => doc.name === doctorName
+    );
+    if (doctor) {
+      setConsultationFee(doctor.consultation_fee);
+    }
+  }, [doctorName]);
 
   const timeSlots = [
     "10:00-10:30",
@@ -41,6 +80,10 @@ export default function AppointmentForm({ doctorName, onBookingComplete, onBack 
     }
     if (!formData.age || formData.age < 1 || formData.age > 120) {
       setError("Please enter a valid age");
+      return false;
+    }
+    if (!formData.gender.trim()) {
+      setError("Please select your gender");
       return false;
     }
     if (!formData.date) {
@@ -92,31 +135,48 @@ export default function AppointmentForm({ doctorName, onBookingComplete, onBack 
       return;
     }
 
-    // Create new appointment
+    // Create appointment object but don't save yet
     const newAppointment = {
       id: Date.now(),
       doctorName,
       name: formData.name,
       age: formData.age,
+      gender: formData.gender,
       healthIssues: formData.healthIssues || "None",
       date: formData.date,
       time: formData.time,
+      consultationFee: consultationFee,
       slotKey,
       bookedAt: new Date().toISOString(),
     };
 
+    // Store pending appointment and show payment modal
+    setPendingAppointment(newAppointment);
+    setShowPaymentModal(true);
+  };
+
+  const handlePaymentConfirm = () => {
+    if (!pendingAppointment) return;
+
+    // Get existing appointments from localStorage
+    const appointments = JSON.parse(
+      localStorage.getItem("appointments") || "[]"
+    );
+
     // Save to localStorage
-    appointments.push(newAppointment);
+    appointments.push(pendingAppointment);
     localStorage.setItem("appointments", JSON.stringify(appointments));
 
+    setShowPaymentModal(false);
     setSuccess(
       `✅ Appointment booked successfully with Dr. ${doctorName} on ${formData.date} at ${formData.time}`
     );
 
     // Reset form
     setFormData({
-      name: "",
-      age: "",
+      name: patientData?.name || "",
+      age: patientData?.age || "",
+      gender: patientData?.gender || "",
       healthIssues: "",
       date: "",
       time: "",
@@ -125,9 +185,14 @@ export default function AppointmentForm({ doctorName, onBookingComplete, onBack 
     // Call callback after 2 seconds
     setTimeout(() => {
       if (onBookingComplete) {
-        onBookingComplete(newAppointment);
+        onBookingComplete(pendingAppointment);
       }
     }, 2000);
+  };
+
+  const handlePaymentCancel = () => {
+    setShowPaymentModal(false);
+    setPendingAppointment(null);
   };
 
   return (
@@ -142,6 +207,8 @@ export default function AppointmentForm({ doctorName, onBookingComplete, onBack 
         {error && <div className="alert alert-danger">{error}</div>}
         {success && <div className="alert alert-success">{success}</div>}
 
+      
+
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="name">
@@ -155,24 +222,46 @@ export default function AppointmentForm({ doctorName, onBookingComplete, onBack 
               onChange={handleChange}
               placeholder="Enter your full name"
               className="form-control"
+              readOnly={patientData !== null}
             />
           </div>
 
-          <div className="form-group">
-            <label htmlFor="age">
-              Age <span className="required">*</span>
-            </label>
-            <input
-              type="number"
-              id="age"
-              name="age"
-              value={formData.age}
-              onChange={handleChange}
-              placeholder="Enter your age"
-              min="1"
-              max="120"
-              className="form-control"
-            />
+          <div className="form-row">
+            <div className="form-group">
+              <label htmlFor="age">
+                Age <span className="required">*</span>
+              </label>
+              <input
+                type="number"
+                id="age"
+                name="age"
+                value={formData.age}
+                onChange={handleChange}
+                placeholder="Enter your age"
+                min="1"
+                max="120"
+                className="form-control"
+                readOnly={patientData !== null}
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="gender">
+                Gender <span className="required">*</span>
+              </label>
+              <select
+                id="gender"
+                name="gender"
+                value={formData.gender}
+                onChange={handleChange}
+                className="form-control"
+                disabled={patientData !== null}
+              >
+                <option value="">--Select Gender--</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+            </div>
           </div>
 
           {/* <div className="form-group">
@@ -223,12 +312,32 @@ export default function AppointmentForm({ doctorName, onBookingComplete, onBack 
               </select>
             </div>
           </div>
+          <br />
+          {/* Display Consultation Fee - Simplified */}
+          {consultationFee > 0 && (
+            <div className="fee-info">
+              Consultation Fee: <span className="fee-value">₹{consultationFee}</span>
+            </div>
+          )}
 
           <button type="submit" className="submit-btn">
             📅 Confirm Appointment
           </button>
         </form>
       </div>
+
+      {/* Payment Confirmation Modal */}
+      {showPaymentModal && pendingAppointment && (
+        <PaymentConfirmation
+          doctorName={doctorName}
+          consultationFee={consultationFee}
+          appointmentDate={formData.date}
+          appointmentTime={formData.time}
+          patientName={formData.name}
+          onConfirm={handlePaymentConfirm}
+          onCancel={handlePaymentCancel}
+        />
+      )}
     </div>
   );
 }

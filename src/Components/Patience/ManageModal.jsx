@@ -27,7 +27,7 @@ function ManageModal({ appointment, onClose }) {
           {step === "options" && (
             <div className="d-grid gap-2 text-center">
               <p className="text-muted mb-4">
-                What would you like to do for your visit with <strong>{appointment.Past_Data?.doctorDetails.name}</strong>?
+                What would you like to do for your visit with <strong>{appointment.doctorName || "Doctor"}</strong>?
               </p>
               <button className="modal-action-btn reschedule" onClick={() => setStep("reschedule")}>
                 Reschedule Request

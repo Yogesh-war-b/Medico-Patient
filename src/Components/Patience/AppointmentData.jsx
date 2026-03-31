@@ -8,15 +8,31 @@ function AppointmentData() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedApp, setSelectedApp] = useState(null); 
 
-  const filteredAppointments = patientData.patients.filter((item) => {
-    const isStatusMatch = view === "upcoming" ? !item.isCompleted : item.isCompleted;
-    const rawName = item.Past_Data ? item.Past_Data.doctorDetails.name : "";
-    const nameWithoutPrefix = rawName.replace(/^(dr\.?\s*)/i, "");
+  // Extract all appointments from patients and flatten them
+  const allAppointments = patientData.patients.flatMap((patient) =>
+    (patient.appointmentData || []).map((apt) => ({
+      ...apt,
+      patientId: patient.patientId,
+      patientName: patient.name,
+      appointmentDate: apt.date,
+      timeSlot: apt.time,
+      reasonForVisit: apt.reasonForVisit || apt.specialization || "General Checkup",
+    }))
+  );
+
+  // Filter appointments based on view and search term
+  const filteredAppointments = allAppointments.filter((item) => {
+    const isStatusMatch = view === "upcoming" 
+      ? item.status === "Upcoming" 
+      : item.status === "Past";
+    
+    const doctorName = item.doctorName || "";
+    const nameWithoutPrefix = doctorName.replace(/^(dr\.?\s*)/i, "");
     
     const isNameMatch = nameWithoutPrefix
       .toLowerCase()
       .trim()
-      .startsWith(searchTerm.toLowerCase().trim());
+      .includes(searchTerm.toLowerCase().trim());
 
     return isStatusMatch && isNameMatch;
   });
@@ -47,14 +63,14 @@ function AppointmentData() {
         <div className="appointment-results-grid">
           {filteredAppointments.length > 0 ? (
             filteredAppointments.map((item) => (
-              <div className="appointment-themed-card mb-3 shadow-sm" key={item.patientId}>
+              <div className="appointment-themed-card mb-3 shadow-sm" key={`${item.patientId}-${item.date}-${item.time}`}>
                 <div className="card-gradient-header"></div>
                 <div className="card-body d-flex align-items-center p-4">
                   <div className="icon-box-themed me-4">{item.reasonForVisit.charAt(0)}</div>
                   <div className="flex-grow-1">
                     <h5 className="fw-bold mb-1">{item.reasonForVisit}</h5>
                     <p className="theme-text-accent fw-bold mb-2">
-                      {item.Past_Data ? item.Past_Data.doctorDetails.name : "To Be Assigned"}
+                      {item.doctorName || "To Be Assigned"}
                     </p>
                     <div className="d-flex gap-4 text-muted small">
                       <span><strong>Date:</strong> {item.appointmentDate}</span>
