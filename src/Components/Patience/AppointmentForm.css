@@ -102,6 +102,20 @@
   border: 1px solid #c3e6cb;
 }
 
+.fee-info {
+  text-align: center;
+  font-size: 0.95rem;
+  color: #333;
+  margin: 1rem 0;
+  font-weight: 500;
+}
+
+.fee-value {
+  color: #667eea;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
 .form-group {
   margin-bottom: 1.5rem;
 }

@@ -49,6 +49,11 @@ export default function SearchResult({location,department}){
                             <div className="info-label">Experience</div>
                             <div className="info-value">{doctor.experience} years</div>
                           </div>
+
+                          <div className="info-item">
+                            <div className="info-label">Consultation Fee</div>
+                            <div className="info-value">₹{doctor.consultation_fee}</div>
+                          </div>
                         </div>
 
                         <div className="doctor-description">
