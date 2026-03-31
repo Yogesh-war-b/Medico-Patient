@@ -10,6 +10,8 @@ import ContactPage from './Contact';
 
 import AppointmentData from '../Components/Patience/AppointmentData';
 
+import './Patience.css';
+
 export default function Patience() {
   const [selectedSection, setSelectedSection] = useState('');
 
