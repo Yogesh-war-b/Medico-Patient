@@ -12,6 +12,8 @@ import AppointmentData from '../Components/Patience/AppointmentData';
 
 import './Patience.css';
 
+import MedicationTests from '../Components/Patience/MedicationTests';
+
 export default function Patience() {
   const [selectedSection, setSelectedSection] = useState('');
 
@@ -25,7 +27,8 @@ export default function Patience() {
         return <AppointmentData />;
       case 'settings':
         return <div className="settings-container"><h2>Settings</h2><p>Settings content here.</p></div>;
-      
+      case 'MedicationTests':
+        return <MedicationTests />;
 
       case 'logout':
         // Handle logout
