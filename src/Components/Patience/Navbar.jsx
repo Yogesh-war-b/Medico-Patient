@@ -6,6 +6,7 @@ import Image from '../../assets/Doctors/ArjunReddy.jpg';
 export default function Navbar({ onSectionChange }) {
 
   const [profileClicked, setProfileClicked] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
 
   
@@ -19,6 +20,7 @@ export default function Navbar({ onSectionChange }) {
     if (onSectionChange) {
       onSectionChange(section);
     }
+    setMenuOpen(false);
     setProfileClicked(false); // Close the dropdown after selecting an option
   }
   
@@ -32,21 +34,26 @@ export default function Navbar({ onSectionChange }) {
         <button
           className="navbar-toggler"
           type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
           aria-controls="navbarNav"
-          aria-expanded="false"
+          aria-expanded={menuOpen}
           aria-label="Toggle navigation"
+          onClick={() => setMenuOpen((open) => !open)}
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
+        <div className={`navbar-collapse ${menuOpen ? 'show-mobile' : 'hide-mobile'}`} id="navbarNav">
           <ul className="navbar-nav ms-auto">
-            {/* <li className="nav-item">
-              <a className="nav-link " aria-current="page" href="/">
-                Home
+            {/* Mobile profile options */}
+            <li className="nav-item mobile-only">
+              <a className="nav-link" onClick={() => handleprofileSection("Profile")}>
+                View Profile
               </a>
-            </li> */}
+            </li>
+            <li className="nav-item mobile-only">
+              <a className="nav-link" onClick={() => handleprofileSection("settings")}>
+                Settings
+              </a>
+            </li>
             
             <li className="nav-item">
               <a className="nav-link " onClick={() => handleprofileSection("appointments")} href="#appointments">
@@ -68,13 +75,20 @@ export default function Navbar({ onSectionChange }) {
                 Contact
               </a>
             </li>
-            <li className="nav-item">
+            
+            {/* Logout at bottom for mobile */}
+            <li className="nav-item mobile-only logout-bottom">
+              <a className="nav-link" onClick={() => handleprofileSection("logout")}>
+                Logout
+              </a>
+            </li>
+            
+            {/* Desktop profile button */}
+            <li className="nav-item desktop-profile">
               <a className="nav-link btn btn-primary text-white ms-2" href="#Profile">
                 <img className="pProfile" src={Image} alt="Profile" onClick={handleprofile}/>
               </a>
             </li>
-
-
           </ul>
           {profileClicked && (
             <div className="pprofileDropdown">
