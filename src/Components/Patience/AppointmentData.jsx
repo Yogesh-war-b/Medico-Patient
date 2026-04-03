@@ -138,9 +138,9 @@ function AppointmentData() {
                 return (
                   <div className="appointment-themed-card mb-3 shadow-sm" key={item.id || `${item.patientId}-${item.appointmentDate}-${item.timeSlot}`}>
                     <div className="card-gradient-header"></div>
-                    <div className="card-body d-flex align-items-center p-4">
+                    <div className=" card-body d-flex align-items-center p-4">
                       <div className="icon-box-themed me-4">{item.reasonForVisit.charAt(0)}</div>
-                      <div className="flex-grow-1">
+                      <div className="subcard flex-grow-1">
                         <h5 className="fw-bold mb-1">{item.reasonForVisit}</h5>
                         <p className="theme-text-accent fw-bold mb-2">{item.doctorName || "To Be Assigned"}</p>
                         <div className="d-flex gap-4 text-muted small mb-1">

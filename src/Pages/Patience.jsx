@@ -41,9 +41,14 @@ export default function Patience() {
   };
     
   return (
-    <div>
+    <div class="patience-container">
       <Navbar onSectionChange={setSelectedSection} />
+      
       {renderContent()}
+
+      {/* <footer className="text-center  mt-2 ">
+        <p className="text-muted mb-0">&copy; 2026 Medico. All rights reserved.</p>
+      </footer> */}
     </div>
   );
 }

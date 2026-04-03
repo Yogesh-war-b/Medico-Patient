@@ -6,6 +6,11 @@
   margin-bottom: 2rem;
 }
 
+.search-results-container{
+  height: 50vh;
+  margin: 0 auto;
+}
+
 .search-filters {
   max-width: 600px;
   margin: 0 auto;
@@ -69,4 +74,16 @@
 
 .search-btn:active {
   transform: translateY(0);
+}
+
+@media screen and (max-width: 768px) {
+  .search-filters-row {
+    grid-template-columns: 1fr;
+  }
+  .search-btn {
+    width: 100%;
+    margin-top: 1rem;
+  
+}
+
 }
