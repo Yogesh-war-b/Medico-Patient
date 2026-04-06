@@ -52,60 +52,6 @@ const hospitalData = {
       "consultation_fee": 1400,
       "appointments": []
     },
-
-    // --- 11 NEW DOCTORS ADDED ---
-    {
-      "id": "DOC005",
-      "name": "Dr. Neha Joshi",
-      "department": "Pulmonology",
-      "age": 40,
-      "image": "",
-      "location": "Ahmedabad",
-      "experience": 15,
-      "qualification": "MBBS, MD (Pulmonology)",
-      "description": "Expert in respiratory infections and asthma management.",
-      "consultation_fee": 900,
-      "appointments": []
-    },
-    {
-      "id": "DOC006",
-      "name": "Dr. Rajesh Pillai",
-      "department": "Gastroenterology",
-      "age": 52,
-      "image": "",
-      "location": "Coimbatore",
-      "experience": 25,
-      "qualification": "MBBS, MD, DM (Gastroenterology)",
-      "description": "Specializes in liver diseases and digestive disorders.",
-      "consultation_fee": 1300,
-      "appointments": []
-    },
-    {
-      "id": "DOC007",
-      "name": "Dr. Shalini Desai",
-      "department": "Endocrinology",
-      "age": 44,
-      "image": "",
-      "location": "Mumbai",
-      "experience": 19,
-      "qualification": "MBBS, MD, DM (Endocrinology)",
-      "description": "Focuses on diabetes and thyroid disorders.",
-      "consultation_fee": 1250,
-      "appointments": []
-    },
-    {
-      "id": "DOC008",
-      "name": "Dr. Meera Iyer",
-      "department": "Gynecology",
-      "age": 39,
-      "image": "",
-      "location": "Kochi",
-      "experience": 12,
-      "qualification": "MBBS, MD (Gynecology)",
-      "description": "Specialist in prenatal care and women’s health.",
-      "consultation_fee": 1000,
-      "appointments": []
-    },
     {
       "id": "DOC009",
       "name": "Dr. Suresh Menon",
@@ -117,19 +63,6 @@ const hospitalData = {
       "qualification": "MBBS, MD (General Medicine)",
       "description": "Veteran physician for routine checkups and chronic illness management.",
       "consultation_fee": 800,
-      "appointments": []
-    },
-    {
-      "id": "DOC010",
-      "name": "Dr. Priya Malhotra",
-      "department": "Psychiatry",
-      "age": 42,
-      "image": "",
-      "location": "Delhi",
-      "experience": 16,
-      "qualification": "MBBS, MD (Psychiatry)",
-      "description": "Focuses on mood disorders and counseling.",
-      "consultation_fee": 950,
       "appointments": []
     },
     {
@@ -151,7 +84,7 @@ const hospitalData = {
       "department": "Oncology",
       "age": 44,
       "image": "",
-      "location": "Hyderabad",
+      "location": "Pune",
       "experience": 17,
       "qualification": "MBBS, MS, MCh (Surgical Oncology)",
       "description": "Expert in surgical oncology focusing on breast and gynecological cancers.",
@@ -190,7 +123,7 @@ const hospitalData = {
       "department": "Oncology",
       "age": 36,
       "image": "",
-      "location": "Chennai",
+      "location": "Pune",
       "experience": 9,
       "qualification": "MBBS, MD, DM (Medical Oncology)",
       "description": "Focuses on medical oncology and precision medicine therapies.",

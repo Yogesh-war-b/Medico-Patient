@@ -1,8 +1,8 @@
-import hospitalData from "../Data/DoctorData.jsx";
+import hospitalData from "../../Data/DoctorData";
 import AppointmentForm from "./AppointmentForm.jsx";
 import { useState } from "react";
 import './SearchResult.css';
-import doctorImage from "../../assets/Doctors/ArjunReddy.jpg";
+import doctorImage from "../../../assets/Doctors/ArjunReddy.jpg";
 
 export default function SearchResult({location,department}){
     const [selectedDoctor, setSelectedDoctor] = useState(null);

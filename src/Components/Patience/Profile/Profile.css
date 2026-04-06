@@ -125,23 +125,28 @@
 
 .form-group {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  align-items: center;
+  gap: 15px;
 }
 
 .form-group.full-width {
-  grid-column: 1 / -1;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
 }
 
 .form-group label {
   font-weight: 600;
   color: #333;
   font-size: 0.9rem;
+  min-width: 120px;
+  flex-shrink: 0;
 }
 
 input,
 textarea,
 select {
+  flex: 1;
   padding: 10px 12px;
   border: 1px solid #ddd;
   border-radius: 4px;
@@ -155,7 +160,7 @@ textarea.readonly {
   border: none;
   background: transparent;
   color: #333;
-  padding: 10px 0;
+  padding: 10px 12px;
 }
 
 input.readonly:focus,
@@ -205,5 +210,21 @@ select.editable {
 
   .form-grid {
     grid-template-columns: 1fr;
+  }
+
+  .form-group {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .form-group label {
+    min-width: auto;
+  }
+
+  input,
+  textarea,
+  select {
+    width: 100%;
   }
 }

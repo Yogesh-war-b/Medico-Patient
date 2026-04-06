@@ -15,7 +15,7 @@ export default function PaymentConfirmation({
         <div className="payment-header">
           <h2>Confirm Payment & Appointment</h2>
           <button className="close-btn" onClick={onCancel}>
-            ✕
+            ✕ 
           </button>
         </div>
 
