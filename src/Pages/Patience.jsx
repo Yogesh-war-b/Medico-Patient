@@ -1,54 +1,36 @@
-import React, { useState } from 'react';
-
-import Navbar from '../Components/Patience/Navbar';
-
-import Search from '../Components/Patience/Search';
-
-import Profile from '../Components/Patience/Profile';
-
-import ContactPage from './Contact';
-
-import AppointmentData from '../Components/Patience/AppointmentData';
-
+import React from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom'; // Added Navigate
 import './Patience.css';
-
-import MedicationTests from '../Components/Patience/MedicationTests';
+import Profile from '../Components/Patience/Profile/Profile';
+import ContactPage from '../Pages/Contact';
+import AppointmentData from '../Components/Patience/AppointmentData/AppointmentData';
+import MedicationTests from '../Components/Patience/TestsAndMedicines/MedicationTests';
+import Settings from '../Components/Patience/Profile/Settings';
+import Search from '../Components/Patience/AppointmentBooking/AppointmentBooking'; // Check this path
+import Navbar from '../Components/Patience/Navbar/Navbar';
 
 export default function Patience() {
-  const [selectedSection, setSelectedSection] = useState('');
-
-  const renderContent = () => {
-    switch (selectedSection) {
-      case 'Profile':
-        return <Profile userId="PAT000000001" />;
-      case 'Contact':
-        return <ContactPage />;
-      case 'AppointmentData':
-        return <AppointmentData />;
-      case 'settings':
-        return <div className="settings-container"><h2>Settings</h2><p>Settings content here.</p></div>;
-      case 'MedicationTests':
-        return <MedicationTests />;
-
-      case 'logout':
-        // Handle logout
-        localStorage.clear();
-        window.location.href = '/';
-        return null;
-      default:
-        return <Search />;
-    }
-  };
-    
   return (
-    <div class="patience-container">
-      <Navbar onSectionChange={setSelectedSection} />
-      
-      {renderContent()}
+    <>
+      <Navbar />
+      <div className="patience-content-wrapper"> {/* Good practice for layout */}
+        <Routes>
+          {/* 1. REMOVE: <Route path="/" element={<Patience />} /> */}
+          
+          {/* 2. ADD: Redirect from root to dashboard */}
+          <Route path="/" element={<Navigate to="/dashboard" replace />} />
 
-      {/* <footer className="text-center  mt-2 ">
-        <p className="text-muted mb-0">&copy; 2026 Medico. All rights reserved.</p>
-      </footer> */}
-    </div>
+          {/* 3. Your existing sub-pages */}
+          <Route path="/patient/dashboard" element={<Search />} />
+          <Route path="/patient/profile" element={<Profile userId="PAT000000001" />} />
+          <Route path="/patient/appointments" element={<AppointmentData />} />
+          <Route path="/patient/contact" element={<ContactPage />} />
+          <Route path="/patient/medication-tests" element={<MedicationTests />} />
+          <Route path="/patient/settings" element={<Settings />} />
+          {/* 4. OPTIONAL: Catch-all redirect for 404s */}
+          <Route path="*" element={<Navigate to="/dashboard" replace />} />
+        </Routes>
+      </div>
+    </>
   );
 }

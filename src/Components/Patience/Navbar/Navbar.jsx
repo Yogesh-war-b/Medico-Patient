@@ -1,43 +1,39 @@
 import './Navbar.css';
 import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import Image from '../../../assets/Doctors/ArjunReddy.jpg';
 
-import Image from '../../assets/Doctors/ArjunReddy.jpg';
-  
-export default function Navbar({ onSectionChange }) {
-
+export default function Navbar() {
   const [profileClicked, setProfileClicked] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
-
-  
-
-
-  function handleprofile(){
-    setProfileClicked(()=>!profileClicked);
+  function handleprofile() {
+    setProfileClicked(!profileClicked);
   }
 
-  function handleprofileSection(section){
-    if (onSectionChange) {
-      onSectionChange(section);
-    }
+  function handleMenuClose() {
     setMenuOpen(false);
-    setProfileClicked(false); // Close the dropdown after selecting an option
+    setProfileClicked(false);
   }
-  
+
+  function handleLogout() {
+    localStorage.clear();
+    window.location.href = '/';
+  }
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
       <div className="container-fluid">
-        <a className="navbar-brand fw-bold" href="/">
+        <NavLink className="navbar-brand fw-bold" to="/" onClick={handleMenuClose}>
           🏥 Medico
-        </a>
+        </NavLink>
         <button
           className="navbar-toggler"
           type="button"
           aria-controls="navbarNav"
           aria-expanded={menuOpen}
           aria-label="Toggle navigation"
-          onClick={() => setMenuOpen((open) => !open)}
+          onClick={() => setMenuOpen(!menuOpen)}
         >
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -45,70 +41,66 @@ export default function Navbar({ onSectionChange }) {
           <ul className="navbar-nav ms-auto">
             {/* Mobile profile options */}
             <li className="nav-item mobile-only">
-              <a className="nav-link" onClick={() => handleprofileSection("Profile")}>
+              <NavLink className="nav-link" to="/patient/profile" onClick={handleMenuClose}>
                 View Profile
-              </a>
+              </NavLink>
             </li>
             <li className="nav-item mobile-only">
-              <a className="nav-link" onClick={() => handleprofileSection("settings")}>
+              <NavLink className="nav-link" to="/patient/settings" onClick={handleMenuClose}>
                 Settings
-              </a>
+              </NavLink>
             </li>
-            
+
             <li className="nav-item">
-              <a className="nav-link " onClick={() => handleprofileSection("appointments")} href="#appointments">
+              <NavLink className="nav-link" to="patient/dashboard" onClick={handleMenuClose}>
                 Book Appointment
-              </a>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link " onClick={() => handleprofileSection("MedicationTests")} href="#MedicationTests">
+              <NavLink className="nav-link" to="patient/medication-tests" onClick={handleMenuClose}>
                 Medication & Tests
-              </a>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link" onClick={() => handleprofileSection("AppointmentData")} href="#AppointmentData">
+              <NavLink className="nav-link" to="/patient/appointments" onClick={handleMenuClose}>
                 Appointments
-              </a>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link"  onClick={()=> handleprofileSection("Contact")} href="#contact">
+              <NavLink className="nav-link" to="/patient/contact" onClick={handleMenuClose}>
                 Contact
-              </a>
+              </NavLink>
             </li>
-            
+
             {/* Logout at bottom for mobile */}
             <li className="nav-item mobile-only logout-bottom">
-              <a className="nav-link" onClick={() => handleprofileSection("logout")}>
+              <a className="nav-link" onClick={handleLogout}>
                 Logout
               </a>
             </li>
-            
+
             {/* Desktop profile button */}
             <li className="nav-item desktop-profile">
-              <a className="nav-link btn btn-primary text-white ms-2" href="#Profile">
-                <img className="pProfile" src={Image} alt="Profile" onClick={handleprofile}/>
+              <a className="nav-link btn btn-primary text-white ms-2" onClick={handleprofile}>
+                <img className="pProfile" src={Image} alt="Profile" />
               </a>
             </li>
           </ul>
           {profileClicked && (
             <div className="pprofileDropdown">
-              <p className="dropdown-item" onClick={() => handleprofileSection("Profile")}>
+              <NavLink className="dropdown-item" to="/patient/profile" onClick={handleMenuClose}>
                 View Profile
-              </p>
+              </NavLink>
               <hr />
-              <p className="dropdown-item" onClick={() => handleprofileSection("settings")}>
+              <NavLink className="dropdown-item" to="/patient/settings" onClick={handleMenuClose}>
                 Settings
-              </p>
+              </NavLink>
               <hr />
-              <p className="dropdown-item" onClick={() => handleprofileSection("logout")}>
+              <a className="dropdown-item" onClick={handleLogout}>
                 Logout
-              </p>
+              </a>
             </div>
           )}
-
-
-
-
         </div>
       </div>
     </nav>

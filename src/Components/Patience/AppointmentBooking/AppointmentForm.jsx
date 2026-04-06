@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./AppointmentForm.css";
-import patienceData from "../Data/PatienceData";
-import hospitalData from "../Data/DoctorData";
+import patienceData from "../../Data/PatienceData";
+import hospitalData from "../../Data/DoctorData";
 import PaymentConfirmation from "./PaymentConfirmation";
 
 export default function AppointmentForm({ doctorName, onBookingComplete, onBack }) {
@@ -263,6 +263,7 @@ export default function AppointmentForm({ doctorName, onBookingComplete, onBack 
               </select>
             </div>
           </div>
+          <br />
 
           {/* <div className="form-group">
             <label htmlFor="healthIssues">Previous Health Issues (Optional)</label>
@@ -280,7 +281,7 @@ export default function AppointmentForm({ doctorName, onBookingComplete, onBack 
           <div className="form-row">
             <div className="form-group">
               <label htmlFor="date">
-                Appointment Date <span className="required">*</span>
+              Select Date <span className="required">*</span>
               </label>
               <input
                 type="date"

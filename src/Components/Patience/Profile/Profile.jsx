@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import patienceData from '../Data/PatienceData';
+import patienceData from '../../Data/PatienceData';
 import './Profile.css';
 
 export default function Profile({ userId }) {
@@ -109,7 +109,7 @@ export default function Profile({ userId }) {
       <div className="profile-content">
         <div className="section">
           <h3>Personal Information</h3>
-          <div className="form-grid">
+          <div className="form-flex">
             <div className="form-group">
               <label>Full Name</label>
               <input 
@@ -167,15 +167,25 @@ export default function Profile({ userId }) {
                 value={formData.email || ''} 
                 onChange={handleInputChange}
                 readOnly={!isEditing}
-                className={isEditing ? 'editable' : 'readonly'}
+                className={isEditing ? 'editable' : 'readonly' } required 
               />
             </div>
+            
+           
+             
+
+            
+
+
+
+
+            
           </div>
         </div>
 
         <div className="section">
           <h3>Contact Information</h3>
-          <div className="form-grid">
+          <div className="form-flex">
             <div className="form-group">
               <label>Phone Number</label>
               <input 
