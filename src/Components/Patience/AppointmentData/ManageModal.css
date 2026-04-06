@@ -107,3 +107,78 @@
   background: #feb2b2;
   color: #fff;
 }
+
+/* RECORDS SECTION STYLES */
+.records-container {
+  max-height: 500px;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.records-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.records-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.records-container::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+.records-container::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.records-section {
+  padding: 15px;
+  background: #f9f9f9;
+  border-left: 4px solid var(--theme-purple);
+  border-radius: var(--radius-sm);
+}
+
+.records-content {
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.prescription-item,
+.test-item {
+  border-left: 3px solid var(--theme-purple);
+  padding-left: 12px !important;
+}
+
+.prescription-item p,
+.test-item p {
+  margin-bottom: 0.5rem;
+}
+
+.prescription-item strong,
+.test-item strong {
+  color: #333;
+}
+
+.test-item .text-muted {
+  font-size: 0.85rem;
+}
+
+.btn-back {
+  background: #f0f0f0;
+  color: #333;
+  border: none;
+  padding: 10px 15px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.btn-back:hover {
+  background: #e0e0e0;
+  transform: translateY(-2px);
+}
