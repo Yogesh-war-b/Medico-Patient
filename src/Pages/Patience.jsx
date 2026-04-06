@@ -13,22 +13,20 @@ export default function Patience() {
   return (
     <>
       <Navbar />
-      <div className="patience-content-wrapper"> {/* Good practice for layout */}
+      <div className="patience-content-wrapper"> 
         <Routes>
-          {/* 1. REMOVE: <Route path="/" element={<Patience />} /> */}
           
-          {/* 2. ADD: Redirect from root to dashboard */}
-          <Route path="/" element={<Navigate to="/dashboard" replace />} />
+          <Route path="/" element={<Navigate to="/patient/dashboard" replace />} />
 
-          {/* 3. Your existing sub-pages */}
+          
           <Route path="/patient/dashboard" element={<Search />} />
           <Route path="/patient/profile" element={<Profile userId="PAT000000001" />} />
           <Route path="/patient/appointments" element={<AppointmentData />} />
           <Route path="/patient/contact" element={<ContactPage />} />
           <Route path="/patient/medication-tests" element={<MedicationTests />} />
           <Route path="/patient/settings" element={<Settings />} />
-          {/* 4. OPTIONAL: Catch-all redirect for 404s */}
-          <Route path="*" element={<Navigate to="/dashboard" replace />} />
+         
+          <Route path="*" element={<Navigate to="/patient/dashboard" replace />} />
         </Routes>
       </div>
     </>

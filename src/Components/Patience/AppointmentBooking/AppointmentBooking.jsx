@@ -1,7 +1,7 @@
 import { useState } from "react";
 import hospitalData from "../../Data/DoctorData";
 import SearchResult from "./SearchResult.jsx";
-import './Search.css';
+import './AppointmentBooking.css';
 
 
 

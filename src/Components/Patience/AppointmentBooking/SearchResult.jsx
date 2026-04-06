@@ -11,9 +11,8 @@ export default function SearchResult({location,department}){
     
     let filterData=hospitalData.hospital_staff.filter((ele)=>{
                 return ele.location===location && ele.department===department;
-                
+ 
             });
-            // console.log(filterData);
 
 
 
