@@ -40,6 +40,28 @@
   margin-bottom: 5px;
 }
 
+.medicine-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.cart-header-btn {
+  background: #667eea;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 8px 14px;
+}
+
+.cart-header-btn:hover {
+  opacity: 0.94;
+}
+
 .gradient-header p {
   color: var(--text-muted);
   font-size: 0.95rem;
@@ -170,6 +192,31 @@
   align-items: center;
   border-top: 1px solid var(--border-color);
   margin-top: auto;
+}
+
+.card-actions-row {
+  display: flex;
+  gap: 8px;
+}
+
+.add-to-cart-btn {
+  border: 1px solid #667eea;
+  width: 40px;
+  height: 40px;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center; /* centers horizontally */
+  align-items: center;
+  background: #fff;
+  color: #667eea;
+  padding: 7px 12px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.add-to-cart-btn:hover {
+  background: #eef2ff;
 }
 
 .price-info {

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import data from '../../Data/MedicineData'; 
 import './Medicines.css';
 
-const Medicines = () => {
+const Medicines = ({ onAddToCart, onOpenCart, cartCount }) => {
   const [itemsToShow, setItemsToShow] = useState(8);
 
   // 2. Ensure we are working with a pure array immediately
@@ -20,10 +20,15 @@ const Medicines = () => {
 
   return (
     <div className="medicines-content">
-      <div className="section-header">
-        <h1 className="gradient-header">Medicines</h1>
-        <p>Select medicines to view details and place an order.</p>
-      </div>
+        <div className="section-header medicine-header">
+          <div>
+            <h1 className="gradient-header">Medicines</h1>
+            <p>Select medicines to view details and place an order.</p>
+          </div>
+          <button className="cart-header-btn" onClick={onOpenCart}>
+            🛒 Cart ({cartCount || 0})
+          </button>
+        </div>
 
       <div className="medicine-grid-container">
         {displayedMedicines.length > 0 ? (
@@ -56,12 +61,15 @@ const Medicines = () => {
                   <span className="label">Price</span>
                   <span className="amount">₹{medicine.price}</span>
                 </div>
-                <button
-                  className="order-btn-primary"
-                  onClick={() => handleOrderMedicine(medicine.name)}
-                >
-                  Order Now
-                </button>
+                
+                <div className="card-actions-row">
+                  <button
+                    className="order-btn-primary"
+                    onClick={() => onAddToCart && onAddToCart(medicine)}
+                  >
+                    Add to Cart
+                  </button>
+                </div>
               </div>
             </div>
           ))

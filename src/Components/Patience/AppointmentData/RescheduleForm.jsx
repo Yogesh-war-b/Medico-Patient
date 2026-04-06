@@ -31,8 +31,8 @@ function RescheduleForm({ onBack, onConfirm }) {
         ></textarea>
       </div>
       <div className="d-flex gap-2">
-        <button type="button" className="btn-back" onClick={onBack}>Back</button>
-        <button type="submit" className="modal-action-btn reschedule mb-0">Submit</button>
+        <button type="button" className="btn-back" style = {{height: "41px",display: "flex", alignItems: "center", justifyContent: "center", marginTop: "16px"}} onClick={onBack}>Back</button>
+        <button type="submit" className="modal-action-btn reschedule mt-3" style = {{height: "41px",display: "flex", alignItems: "center", justifyContent: "center"}}>Submit</button>
       </div>
     </form>
   );

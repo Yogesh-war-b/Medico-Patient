@@ -1,14 +1,42 @@
 import React, { useState } from 'react';
 import  availableTests  from '../../Data/TestData1';
 import Medicines from './Medicines';
+import CartModal from './CartModal';
 import './MedicationTests.css';
 
 const MedicationTests = () => {
   const [itemsToShow, setItemsToShow] = useState(8); // Show 2 rows of 4 items initially
+  const [cartItems, setCartItems] = useState([]);
+  const [isCartOpen, setIsCartOpen] = useState(false);
   
   const handleBookTest = (testName) => {
     alert(`Booking: ${testName}`);
   };
+
+  const handleAddToCart = (medicine) => {
+    setCartItems((prevItems) => {
+      const existing = prevItems.find((item) => item.id === medicine.id);
+      if (existing) {
+        return prevItems.map((item) =>
+          item.id === medicine.id ? { ...item, quantity: item.quantity + 1 } : item
+        );
+      }
+      return [...prevItems, { ...medicine, quantity: 1 }];
+    });
+  };
+
+  const handleRemoveFromCart = (id) => {
+    setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
+  };
+
+  const handleClearCart = () => {
+    setCartItems([]); // This empties the array
+  };
+
+  const totalCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  const totalAmount = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const openCart = () => setIsCartOpen(true);
+  const closeCart = () => setIsCartOpen(false);
 
   const displayedTests = availableTests.slice(0, itemsToShow);
   const hasMore = itemsToShow < availableTests.length;
@@ -27,7 +55,17 @@ const MedicationTests = () => {
 
     <div className="med-test-page">
       <section className="medicines-section">
-        <Medicines />
+        <Medicines
+          onAddToCart={handleAddToCart}
+          onOpenCart={openCart}
+          cartCount={totalCount}
+        />
+        <div className="buy-items-footer">
+          <button className="buy-items-btn" onClick={openCart} disabled={totalCount === 0}>
+            Buy Items ({totalCount})
+          </button>
+        </div>
+        <CartModal isOpen={isCartOpen} onClose={closeCart} cartItems={cartItems} onRemove={handleRemoveFromCart} onOrderSuccess={handleClearCart} />
       </section>
       <header className="page-header">
         <h1>Medical Tests & Scans</h1>
